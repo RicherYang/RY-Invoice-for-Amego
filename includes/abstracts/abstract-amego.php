@@ -28,32 +28,22 @@ abstract class RY_IFAMEGO_Abstract_Invoice
         ]);
 
         if (is_wp_error($response)) {
-            RY_IFAMEGO::instance()->log('error', 'amego-invoice', 'Link failed', $response->get_error_messages());
+            RY_Logs::log('amego-invoice', 'error', 'Link failed', $response->get_error_messages());
             return;
         }
 
         if (wp_remote_retrieve_response_code($response) != 200) {
-            RY_IFAMEGO::instance()->log('error', 'amego-invoice', 'Link HTTP status error', ['status' => wp_remote_retrieve_response_code($response)]);
+            RY_Logs::log('amego-invoice', 'error', 'Link HTTP status error', ['status' => wp_remote_retrieve_response_code($response)]);
             return;
         }
 
         $result = @json_decode(wp_remote_retrieve_body($response));
 
         if (!is_object($result)) {
-            RY_IFAMEGO::instance()->log('error', 'amego-invoice', 'Link response parse failed', ['response' => wp_remote_retrieve_body($response)]);
+            RY_Logs::log('amego-invoice', 'error', 'Link response parse failed', ['response' => wp_remote_retrieve_body($response)]);
             return;
         }
 
         return $result;
-    }
-
-    protected function die_success()
-    {
-        exit('1|OK');
-    }
-
-    protected function die_error()
-    {
-        exit('0|');
     }
 }

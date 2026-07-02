@@ -42,7 +42,7 @@ final class RY_IFAMEGO_Updater
             return $result;
         }
 
-        $response = RY_Ifamego_LinkServer::instance()->get_info();
+        $response = RY_IFAMEGO_LinkServer::instance()->get_info();
         if (!empty($response)) {
             return (object) $response;
         }

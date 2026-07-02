@@ -354,6 +354,7 @@ final class RY_IFAMEGO_WC_Invoice
 
         $invoice_data = [
             'no' => $invoice_number,
+            'date' => $order->get_meta('_invoice_date'),
         ];
         RY_Logs::log('amego-invoice', 'info', 'Invalid WooCommerce #' . $order->get_id(), $invoice_data);
         RY_IFAMEGO_Invoice::instance()->invalid_invoice($invoice_data, $order->get_id());

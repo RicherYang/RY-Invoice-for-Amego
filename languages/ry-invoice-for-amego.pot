@@ -2,7 +2,7 @@
 # This file is distributed under the GPLv3.
 msgid ""
 msgstr ""
-"Project-Id-Version: RY Invoice for Amego 2026.6.1\n"
+"Project-Id-Version: RY Invoice for Amego 2026.7.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/ry-invoice-for-amego\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -178,23 +178,23 @@ msgstr ""
 msgid "Customer"
 msgstr ""
 
-#: includes/invoice.php:129
-#: woocommerce/invoice.php:296
-#: woocommerce/invoice.php:308
-#: woocommerce/invoice.php:320
-#: woocommerce/invoice.php:329
+#: includes/invoice.php:126
+#: woocommerce/invoice.php:295
+#: woocommerce/invoice.php:307
+#: woocommerce/invoice.php:319
+#: woocommerce/invoice.php:328
 msgid "parcel"
 msgstr ""
 
-#: includes/invoice.php:206
+#: includes/invoice.php:209
 msgid "Discount"
 msgstr ""
 
-#: includes/ry-general/html/log-info.php:55
+#: includes/ry-general/html/log-info.php:58
 msgid "Download"
 msgstr ""
 
-#: includes/ry-general/html/log-info.php:63
+#: includes/ry-general/html/log-info.php:66
 msgid "Permanently delete"
 msgstr ""
 
@@ -451,12 +451,12 @@ msgid "Invalid tax ID number"
 msgstr ""
 
 #: woocommerce/invoice-basic.php:245
-#: woocommerce/invoice.php:244
+#: woocommerce/invoice.php:243
 msgid "Zero total fee without invoice"
 msgstr ""
 
 #: woocommerce/invoice-basic.php:252
-#: woocommerce/invoice.php:250
+#: woocommerce/invoice.php:249
 msgid "Negative total fee can't invoice"
 msgstr ""
 
@@ -471,10 +471,10 @@ msgstr ""
 msgid "Invoice create time"
 msgstr ""
 
-#: woocommerce/invoice.php:317
+#: woocommerce/invoice.php:316
 msgid "shipping fee"
 msgstr ""
 
-#: woocommerce/invoice.php:326
+#: woocommerce/invoice.php:325
 msgid "return fee"
 msgstr ""

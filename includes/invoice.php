@@ -72,7 +72,6 @@ final class RY_IFAMEGO_Invoice extends RY_IFAMEGO_Abstract_Invoice
                 $post_args['CarrierId1'] = $invoice_data['phone_barcode'];
                 $post_args['CarrierId2'] = $invoice_data['phone_barcode'];
                 break;
-                break;
             case 'company':
                 $post_args['SalesAmount'] = round($post_args['TotalAmount'] / 1.05, 0);
                 $post_args['TaxAmount'] = $post_args['TotalAmount'] - $post_args['SalesAmount'];
@@ -96,20 +95,20 @@ final class RY_IFAMEGO_Invoice extends RY_IFAMEGO_Abstract_Invoice
                 $invoice_item['qty'] = 1;
             }
 
-            $post_item = [
-                'Description' => $invoice_item['name'],
-                'Quantity' => $invoice_item['qty'],
-                'Unit' => $invoice_item['unit'],
-                'UnitPrice' => 0,
-                'Amount' => $invoice_item['total'],
+            $name = mb_strimwidth(str_replace('|', '', $invoice_item['name']), 0, 80, '');
+            $unit = mb_strimwidth(str_replace('|', '', $invoice_item['unit']), 0, 6, '');
+            $qty = round($invoice_item['qty'], 3);
+            $unit_price = round($invoice_item['total'] / $qty, 6);
+            $total = round($qty * $unit_price, 0);
+
+            $post_args['ProductItem'][] = [
+                'Description' => $name,
+                'Quantity' => $qty,
+                'Unit' => $unit,
+                'UnitPrice' => $unit_price,
+                'Amount' => $total,
                 'TaxType' => 1,
             ];
-            $post_item['Description'] = mb_strimwidth(str_replace('|', '', $post_item['Description']), 0, 80, '');
-            $post_item['Unit'] = mb_strimwidth(str_replace('|', '', $post_item['Unit']), 0, 6, '');
-            $post_item['Quantity'] = round($post_item['Quantity'], 3);
-            $post_item['UnitPrice'] = round($post_item['Amount'] / $post_item['Quantity'], 6);
-            $post_item['Amount'] = round($post_item['Quantity'] * $post_item['UnitPrice'], 0);
-            $post_args['ProductItem'][] = $post_item;
         }
 
         $item_total = array_sum(array_column($post_args['ProductItem'], 'Amount'));
@@ -123,15 +122,18 @@ final class RY_IFAMEGO_Invoice extends RY_IFAMEGO_Abstract_Invoice
                     }
                     break;
                 case 'product':
-                    $post_item = [
-                        'Description' => $general_info['abnormal_product'],
+                    $name = mb_strimwidth(str_replace('|', '', $general_info['abnormal_product']), 0, 80, '');
+                    $unit = apply_filters('ry_invoice-item_unit_name', __('parcel', 'ry-invoice-for-amego'), $object_ID, 'abnormal');
+                    $unit = mb_strimwidth(str_replace('|', '', $unit), 0, 6, '');
+
+                    $post_args['ProductItem'][] = [
+                        'Description' => $name,
                         'Quantity' => 1,
-                        'Unit' => apply_filters('ry_invoice-item_unit_name', __('parcel', 'ry-invoice-for-amego'), $object_ID, 'abnormal'),
-                        'UnitPrice' => 0,
+                        'Unit' => $unit,
+                        'UnitPrice' => $post_args['TotalAmount'] - $item_total,
                         'Amount' => $post_args['TotalAmount'] - $item_total,
                         'TaxType' => 1,
                     ];
-                    $post_args['ProductItem'][] = $post_item;
                     break;
             }
         }

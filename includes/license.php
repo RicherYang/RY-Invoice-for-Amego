@@ -22,8 +22,7 @@ final class RY_IFAMEGO_License extends RY_Abstract_License
 
     protected function do_init(): void
     {
-        // $this->valid_key();
-        $this->activated = true;
+        $this->valid_key();
     }
 
     public function activate_key()
