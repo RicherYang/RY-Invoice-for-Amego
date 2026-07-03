@@ -4,8 +4,8 @@ abstract class RY_IFAMEGO_Abstract_Invoice
 {
     protected function generate_trade_no($object_ID, $order_prefix = '')
     {
-        $trade_no = $order_prefix . $object_ID . 'TS' . random_int(0, 9) . strrev((string) time());
-        $trade_no = apply_filters('ry_invoice_amego-trade_no', $trade_no);
+        $trade_no = $order_prefix . $object_ID . 'T' . random_int(0, 9) . strrev((string) time());
+        $trade_no = apply_filters('ry_invoice_amego-trade_no', $trade_no, $object_ID, $order_prefix);
 
         return substr($trade_no, 0, 18);
     }
