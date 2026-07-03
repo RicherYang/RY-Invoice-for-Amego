@@ -85,10 +85,10 @@ return [
         ],
     ],
     [
-        'title' => __('Order no prefix', 'ry-invoice-for-amego'),
+        'title' => __('Trade no prefix', 'ry-invoice-for-amego'),
         'id' => RY_IFAMEGO::OPTION_PREFIX . 'prefix',
         'type' => 'text',
-        'desc' => __('The prefix string of order no. Only letters and numbers allowed.', 'ry-invoice-for-amego'),
+        'desc' => __('The prefix string of trade no. Only letters and numbers allowed.', 'ry-invoice-for-amego'),
         'desc_tip' => true,
         'autoload' => false,
     ],

@@ -47,13 +47,9 @@ final class RY_IFAMEGO_WC_Admin_Setting_Invoice
 
     public function check_option()
     {
-        $api_info = RY_IFAMEGO::get_option('apiinfo', []);
-        if (is_array($api_info) && isset($api_info['prefix'])) {
-            if (!preg_match('/^[a-z0-9]{0,3}$/i', $api_info['prefix'])) {
-                WC_Admin_Settings::add_error(__('Order no prefix only letters and numbers allowed, and maximum length is 3 characters.', 'ry-invoice-for-amego'));
-                $api_info['prefix'] = '';
-                RY_IFAMEGO::update_option('apiinfo', $api_info, false);
-            }
+        if (!preg_match('/^[a-z0-9]{0,3}$/i', RY_IFAMEGO::get_option('prefix', ''))) {
+            WC_Admin_Settings::add_error(__('Trade no prefix only letters and numbers allowed, and maximum length is 3 characters.', 'ry-invoice-for-amego'));
+            RY_IFAMEGO::update_option('prefix', '', false);
         }
     }
 }

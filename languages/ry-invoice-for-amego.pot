@@ -330,8 +330,8 @@ msgstr ""
 msgid "Amego invoice"
 msgstr ""
 
-#: woocommerce/admin/settings/invoice.php:53
-msgid "Order no prefix only letters and numbers allowed, and maximum length is 3 characters."
+#: woocommerce/admin/settings/invoice.php:51
+msgid "Trade no prefix only letters and numbers allowed, and maximum length is 3 characters."
 msgstr ""
 
 #: woocommerce/admin/settings/ry-tools-settings.php:16
@@ -422,11 +422,11 @@ msgid "auto ( when order status cancelled OR refunded )"
 msgstr ""
 
 #: woocommerce/admin/settings/settings-invoice.php:88
-msgid "Order no prefix"
+msgid "Trade no prefix"
 msgstr ""
 
 #: woocommerce/admin/settings/settings-invoice.php:91
-msgid "The prefix string of order no. Only letters and numbers allowed."
+msgid "The prefix string of trade no. Only letters and numbers allowed."
 msgstr ""
 
 #: woocommerce/admin/settings/settings-invoice.php:96
