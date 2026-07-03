@@ -95,8 +95,8 @@ final class RY_IFAMEGO_Invoice extends RY_IFAMEGO_Abstract_Invoice
                 $invoice_item['qty'] = 1;
             }
 
-            $name = mb_strimwidth(str_replace('|', '', $invoice_item['name']), 0, 80, '');
-            $unit = mb_strimwidth(str_replace('|', '', $invoice_item['unit']), 0, 6, '');
+            $name = mb_strimwidth(str_replace('|', '', strip_tags($invoice_item['name'])), 0, 80, '');
+            $unit = mb_strimwidth(str_replace('|', '', strip_tags($invoice_item['unit'])), 0, 6, '');
             $qty = round($invoice_item['qty'], 3);
             $unit_price = round($invoice_item['total'] / $qty, 6);
             $total = round($qty * $unit_price, 0);
@@ -122,7 +122,7 @@ final class RY_IFAMEGO_Invoice extends RY_IFAMEGO_Abstract_Invoice
                     }
                     break;
                 case 'product':
-                    $name = mb_strimwidth(str_replace('|', '', $general_info['abnormal_product']), 0, 80, '');
+                    $name = mb_strimwidth(str_replace('|', '', strip_tags($general_info['abnormal_product'])), 0, 80, '');
                     $unit = apply_filters('ry_invoice-item_unit_name', __('parcel', 'ry-invoice-for-amego'), $object_ID, 'abnormal');
                     $unit = mb_strimwidth(str_replace('|', '', $unit), 0, 6, '');
 
@@ -142,7 +142,7 @@ final class RY_IFAMEGO_Invoice extends RY_IFAMEGO_Abstract_Invoice
             $post_args['TaxAmount'] = 0;
         }
         $post_args['MainRemark'] = apply_filters('ry_invoice-main_remark', $post_args['MainRemark'], $object_ID);
-        $post_args['MainRemark'] = mb_strimwidth($post_args['MainRemark'], 0, 200, '');
+        $post_args['MainRemark'] = mb_strimwidth(strip_tags($post_args['MainRemark']), 0, 200, '');
 
         foreach ($post_args as $key => $value) {
             if (is_array($value)) {

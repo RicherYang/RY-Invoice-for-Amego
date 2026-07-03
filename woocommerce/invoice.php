@@ -124,6 +124,11 @@ final class RY_IFAMEGO_WC_Invoice
         }
 
         if ($result->code != '0') {
+            if ($order->get_meta('_invoice_number') === 'wait') {
+                $order->delete_meta_data('_invoice_number');
+                $order->save();
+            }
+
             $order->add_order_note(sprintf(
                 /* translators: %1$s Error messade, %2$s Status code */
                 __('Issue invoice error: %1$s (%2$s)', 'ry-invoice-for-amego'),
@@ -160,7 +165,7 @@ final class RY_IFAMEGO_WC_Invoice
         if ($result->code != '0') {
             $order->add_order_note(sprintf(
                 /* translators: %1$s Error messade, %2$s Status code */
-                __('Issue invoice error: %1$s (%2$s)', 'ry-invoice-for-amego'),
+                __('Invalid invoice error: %1$s (%2$s)', 'ry-invoice-for-amego'),
                 $result->msg,
                 $result->code,
             ));

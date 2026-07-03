@@ -12,11 +12,17 @@
                 <legend class="screen-reader-text"><span><?php esc_html_e('Debug log', 'ry-invoice-for-amego'); ?></span></legend>
                 <label for="log"><input name="log" type="checkbox" id="log" value="yes" <?php checked(RY_IFAMEGO::get_option('log', 'no') === 'yes'); ?>>
                     <?php esc_html_e('Enable log', 'ry-invoice-for-amego'); ?></label>
-                <p class="description"><?php echo wp_kses(sprintf(
-                    /* translators: %s: Path of log file */
-                    __('Log file %s. Note: this may log personal information.', 'ry-invoice-for-amego'),
-                    '<code>' . esc_html(RY_Logs::get_log_path('amego-invoice')) . '</code>'
-                ), ['code' => []]); ?></p>
+                <p class="description">
+                    <?php echo wp_kses(sprintf(
+                        /* translators: %s: Path of log file */
+                        __('Log file %s', 'ry-invoice-for-amego'),
+                        '<code>' . esc_html(RY_Logs::get_log_path('amego-invoice')) . '</code>'
+                    ), ['code' => []]); ?>
+                    <br><?php echo wp_kses(
+                        __('<strong>Note:</strong> The log may contain personal information.', 'ry-invoice-for-amego'),
+                        ['strong' => []]
+                    ); ?>
+                </p>
             </fieldset>
         </td>
     </tr>

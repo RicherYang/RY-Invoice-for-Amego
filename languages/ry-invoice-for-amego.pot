@@ -94,25 +94,29 @@ msgid "Enable log"
 msgstr ""
 
 #. translators: %s: Path of log file
-#: admin/page/html/option.php:17
+#: admin/page/html/option.php:18
 #, php-format
-msgid "Log file %s. Note: this may log personal information."
+msgid "Log file %s"
 msgstr ""
 
-#: admin/page/html/option.php:24
-#: admin/page/html/option.php:27
-msgid "Sandbox"
-msgstr ""
-
-#: admin/page/html/option.php:29
-msgid "Enable sandbox"
+#: admin/page/html/option.php:22
+msgid "<strong>Note:</strong> The log may contain personal information."
 msgstr ""
 
 #: admin/page/html/option.php:30
-msgid "Note: For developers use ONLY."
+#: admin/page/html/option.php:33
+msgid "Sandbox"
 msgstr ""
 
 #: admin/page/html/option.php:35
+msgid "Enable sandbox"
+msgstr ""
+
+#: admin/page/html/option.php:36
+msgid "Note: For developers use ONLY."
+msgstr ""
+
+#: admin/page/html/option.php:41
 #: woocommerce/admin/meta-boxes/class-wc-meta-box-invoice-data.php:38
 #: woocommerce/admin/meta-boxes/class-wc-meta-box-invoice-data.php:125
 #: woocommerce/invoice-basic.php:63
@@ -120,7 +124,7 @@ msgstr ""
 msgid "Tax ID number"
 msgstr ""
 
-#: admin/page/html/option.php:39
+#: admin/page/html/option.php:45
 msgid "App Key"
 msgstr ""
 
@@ -179,10 +183,10 @@ msgid "Customer"
 msgstr ""
 
 #: includes/invoice.php:126
-#: woocommerce/invoice.php:295
-#: woocommerce/invoice.php:307
-#: woocommerce/invoice.php:319
-#: woocommerce/invoice.php:328
+#: woocommerce/invoice.php:300
+#: woocommerce/invoice.php:312
+#: woocommerce/invoice.php:324
+#: woocommerce/invoice.php:333
 msgid "parcel"
 msgstr ""
 
@@ -225,8 +229,8 @@ msgstr[1] ""
 #: woocommerce/admin/meta-boxes/class-wc-meta-box-invoice-data.php:102
 #: woocommerce/admin/meta-boxes/class-wc-meta-box-invoice-data.php:106
 #: woocommerce/invoice-basic.php:225
-#: woocommerce/invoice.php:141
-#: woocommerce/invoice.php:197
+#: woocommerce/invoice.php:146
+#: woocommerce/invoice.php:202
 msgid "Invoice number"
 msgstr ""
 
@@ -280,7 +284,7 @@ msgstr ""
 #: woocommerce/admin/meta-boxes/class-wc-meta-box-invoice-data.php:60
 #: woocommerce/admin/meta-boxes/class-wc-meta-box-invoice-data.php:107
 #: woocommerce/invoice-basic.php:230
-#: woocommerce/invoice.php:142
+#: woocommerce/invoice.php:147
 msgid "Invoice random number"
 msgstr ""
 
@@ -301,7 +305,7 @@ msgid "Expected get time"
 msgstr ""
 
 #: woocommerce/admin/meta-boxes/class-wc-meta-box-invoice-data.php:137
-#: woocommerce/invoice.php:172
+#: woocommerce/invoice.php:177
 msgid "Invalid invoice"
 msgstr ""
 
@@ -451,30 +455,35 @@ msgid "Invalid tax ID number"
 msgstr ""
 
 #: woocommerce/invoice-basic.php:245
-#: woocommerce/invoice.php:243
+#: woocommerce/invoice.php:248
 msgid "Zero total fee without invoice"
 msgstr ""
 
 #: woocommerce/invoice-basic.php:252
-#: woocommerce/invoice.php:249
+#: woocommerce/invoice.php:254
 msgid "Negative total fee can't invoice"
 msgstr ""
 
 #. translators: %1$s Error messade, %2$s Status code
-#: woocommerce/invoice.php:129
-#: woocommerce/invoice.php:163
+#: woocommerce/invoice.php:134
 #, php-format
 msgid "Issue invoice error: %1$s (%2$s)"
 msgstr ""
 
-#: woocommerce/invoice.php:143
+#: woocommerce/invoice.php:148
 msgid "Invoice create time"
 msgstr ""
 
-#: woocommerce/invoice.php:316
+#. translators: %1$s Error messade, %2$s Status code
+#: woocommerce/invoice.php:168
+#, php-format
+msgid "Invalid invoice error: %1$s (%2$s)"
+msgstr ""
+
+#: woocommerce/invoice.php:321
 msgid "shipping fee"
 msgstr ""
 
-#: woocommerce/invoice.php:325
+#: woocommerce/invoice.php:330
 msgid "return fee"
 msgstr ""
