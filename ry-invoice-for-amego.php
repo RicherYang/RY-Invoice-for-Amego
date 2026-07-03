@@ -4,7 +4,7 @@
  * Plugin Name: RY Invoice for Amego
  * Plugin URI: https://ry-plugin.com/ry-invoice-for-amego
  * Description: Amego E-invoice, support WooCommerce.
- * Version: 2026.7.2
+ * Version: 2026.7.3
  * Requires at least: 6.8
  * Requires PHP: 8.2
  * Author: Richer Yang
@@ -18,7 +18,7 @@
 
 defined('ABSPATH') or exit;
 
-define('RY_IFAMEGO_VERSION', '2026.7.2');
+define('RY_IFAMEGO_VERSION', '2026.7.3');
 define('RY_IFAMEGO_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('RY_IFAMEGO_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('RY_IFAMEGO_PLUGIN_BASENAME', plugin_basename(__FILE__));
