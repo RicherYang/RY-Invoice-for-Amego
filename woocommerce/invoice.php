@@ -239,7 +239,7 @@ final class RY_IFAMEGO_WC_Invoice
             'trackcode' => RY_IFAMEGO::get_option('trackcode', ''),
             'address' => $full_country,
             'email' => $order->get_billing_email(),
-            'total' => round($order->get_total() - $order->get_total_refunded(), 0),
+            'total' => $order->get_total() - $order->get_total_refunded(),
         ];
 
         if ($invoice_data['total'] == 0) {
@@ -259,6 +259,24 @@ final class RY_IFAMEGO_WC_Invoice
             case 'personal':
                 switch ($order->get_meta('_invoice_carruer_type')) {
                     case 'amego_host':
+                        $invoice_data['type'] = 'host';
+                        break;
+                    case 'ecpay_host':
+                        $order = wc_get_order();
+                        $order->update_meta_data('_invoice_carruer_type', 'amego_host');
+                        $order->save();
+                        $invoice_data['type'] = 'host';
+                        break;
+                    case 'ezpay_host':
+                        $order = wc_get_order();
+                        $order->update_meta_data('_invoice_carruer_type', 'amego_host');
+                        $order->save();
+                        $invoice_data['type'] = 'host';
+                        break;
+                    case 'smilepay_host':
+                        $order = wc_get_order();
+                        $order->update_meta_data('_invoice_carruer_type', 'amego_host');
+                        $order->save();
                         $invoice_data['type'] = 'host';
                         break;
                     case 'MOICA':
@@ -296,8 +314,9 @@ final class RY_IFAMEGO_WC_Invoice
                 $invoice_data['item'][] = [
                     'name' => $item_name,
                     'qty' => $order_item->get_quantity() + $order->get_qty_refunded_for_item($order_item->get_id(), $order_item->get_type()),
-                    'total' => round($item_total - $item_refunded, wc_get_price_decimals()),
+                    'total' => $item_total - $item_refunded,
                     'unit' => apply_filters('ry_invoice-item_unit_name', __('parcel', 'ry-invoice-for-amego'), $order->get_id(), $order_item->get_id()),
+                    'tax' => 1,
                 ];
             }
         }
@@ -308,8 +327,9 @@ final class RY_IFAMEGO_WC_Invoice
                 $invoice_data['item'][] = [
                     'name' => $fee_item->get_name(),
                     'qty' => $fee_item->get_quantity(),
-                    'total' => round($fee_item->get_total(), wc_get_price_decimals()),
+                    'total' => $fee_item->get_total(),
                     'unit' => apply_filters('ry_invoice-item_unit_name', __('parcel', 'ry-invoice-for-amego'), $order->get_id(), $fee_item->get_id()),
+                    'tax' => 1,
                 ];
             }
         }
@@ -320,8 +340,9 @@ final class RY_IFAMEGO_WC_Invoice
             $invoice_data['item'][] = [
                 'name' => __('shipping fee', 'ry-invoice-for-amego'),
                 'qty' => 1,
-                'total' => round($shipping_fee, wc_get_price_decimals()),
+                'total' => $shipping_fee,
                 'unit' => apply_filters('ry_invoice-item_unit_name', __('parcel', 'ry-invoice-for-amego'), $order->get_id(), 'shipping'),
+                'tax' => 1,
             ];
         }
 
@@ -329,8 +350,9 @@ final class RY_IFAMEGO_WC_Invoice
             $invoice_data['item'][] = [
                 'name' => __('return fee', 'ry-invoice-for-amego'),
                 'qty' => 1,
-                'total' => round(-$total_refunded, wc_get_price_decimals()),
+                'total' => -$total_refunded,
                 'unit' => apply_filters('ry_invoice-item_unit_name', __('parcel', 'ry-invoice-for-amego'), $order->get_id(), 'return'),
+                'tax' => 1,
             ];
         }
 

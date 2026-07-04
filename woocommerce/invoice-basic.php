@@ -34,9 +34,9 @@ final class RY_IFAMEGO_WC_Invoice_Basic
                 'type' => 'select',
                 'label' => __('Invoice type', 'ry-invoice-for-amego'),
                 'options' => [
-                    'personal' => rywai_invoice_type_to_name('personal'),
-                    'company' => rywai_invoice_type_to_name('company'),
-                    'donate' => rywai_invoice_type_to_name('donate'),
+                    'personal' => ry_ifamego_invoice_type_to_name('personal'),
+                    'company' => ry_ifamego_invoice_type_to_name('company'),
+                    'donate' => ry_ifamego_invoice_type_to_name('donate'),
                 ],
                 'default' => 'personal',
                 'required' => true,
@@ -46,9 +46,9 @@ final class RY_IFAMEGO_WC_Invoice_Basic
                 'type' => 'select',
                 'label' => __('Carruer type', 'ry-invoice-for-amego'),
                 'options' => [
-                    'amego_host' => rywai_carruer_type_to_name('amego_host') . __(' (send paper when win)', 'ry-invoice-for-amego'),
-                    'MOICA' => rywai_carruer_type_to_name('MOICA'),
-                    'phone_barcode' => rywai_carruer_type_to_name('phone_barcode'),
+                    'amego_host' => ry_ifamego_carruer_type_to_name('amego_host') . __(' (send paper when win)', 'ry-invoice-for-amego'),
+                    'MOICA' => ry_ifamego_carruer_type_to_name('MOICA'),
+                    'phone_barcode' => ry_ifamego_carruer_type_to_name('phone_barcode'),
                 ],
                 'default' => 'amego_host',
                 'required' => true,
@@ -260,13 +260,13 @@ final class RY_IFAMEGO_WC_Invoice_Basic
         $invoice_info[] = [
             'key' => 'invoice-type',
             'name' => __('Invoice type', 'ry-invoice-for-amego'),
-            'value' => rywai_invoice_type_to_name($invoice_type),
+            'value' => ry_ifamego_invoice_type_to_name($invoice_type),
         ];
 
         switch ($invoice_type) {
             case 'personal':
                 $key = count($invoice_info) - 1;
-                $invoice_info[$key]['value'] .= ' (' . rywai_carruer_type_to_name($carruer_type) . ')';
+                $invoice_info[$key]['value'] .= ' (' . ry_ifamego_carruer_type_to_name($carruer_type) . ')';
                 if (in_array($carruer_type, ['MOICA', 'phone_barcode'])) {
                     $invoice_info[] = [
                         'key' => 'carruer-number',

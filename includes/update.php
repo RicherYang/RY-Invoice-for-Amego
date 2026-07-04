@@ -17,8 +17,8 @@ final class RY_IFAMEGO_Update
             return;
         }
 
-        if (version_compare($now_version, '2026.7.3', '<')) {
-            RY_IFAMEGO::update_option('version', '2026.7.3', true);
+        if (version_compare($now_version, '2026.7.4', '<')) {
+            RY_IFAMEGO::update_option('version', '2026.7.4', true);
         }
     }
 }

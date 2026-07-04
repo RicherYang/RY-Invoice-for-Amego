@@ -1,22 +1,38 @@
 <?php defined('ABSPATH') or exit; ?>
 
-<?php $api_info = RY_IFAMEGO_Invoice::instance()->get_info(); ?>
+<?php $general_info = RY_IFAMEGO_Invoice::instance()->get_info(); ?>
 
 <h2 class="title"><?php esc_html_e('General options', 'ry-invoice-for-amego'); ?></h2>
 
 <table class="form-table" role="presentation">
     <tr>
-        <th scope="row"><label for="abnormal_mode"><?php esc_html_e('Amount abnormal mode', 'ry-invoice-for-amego'); ?></label></th>
+        <th scope="row"><label for="count_precision"><?php esc_html_e('Item count precision', 'ry-invoice-for-amego'); ?></label></th>
         <td>
-            <select name="abnormal_mode" id="abnormal_mode">
-                <option value=""><?php esc_html_e('No action', 'ry-invoice-for-amego'); ?></option>
-                <option value="product"><?php esc_html_e('Add one product to match order amount', 'ry-invoice-for-amego'); ?></option>
-                <option value="order"><?php esc_html_e('Change order total amount', 'ry-invoice-for-amego'); ?></option>
+            <select name="count_precision" id="count_precision">
+                <option value="0" <?php selected($general_info['count_precision'], 0); ?>>0</option>
+                <option value="1" <?php selected($general_info['count_precision'], 1); ?>>1</option>
+                <option value="2" <?php selected($general_info['count_precision'], 2); ?>>2</option>
+                <option value="3" <?php selected($general_info['count_precision'], 3); ?>>3</option>
+                <option value="4" <?php selected($general_info['count_precision'], 4); ?>>4</option>
+                <option value="5" <?php selected($general_info['count_precision'], 5); ?>>5</option>
+                <option value="6" <?php selected($general_info['count_precision'], 6); ?>>6</option>
+                <option value="7" <?php selected($general_info['count_precision'], 7); ?>>7</option>
             </select>
         </td>
     </tr>
-     <tr>
-        <th scope="row"><label for="abnormal_product"><?php esc_html_e('Fix amount product name', 'ry-invoice-for-amego'); ?></label></th>
-        <td><input name="abnormal_product" type="text" id="abnormal_product" value="<?php echo esc_attr($api_info['abnormal_product']); ?>" class="regular-text"></td>
+    <tr>
+        <th scope="row"><label for="amount_precision"><?php esc_html_e('Item amount precision', 'ry-invoice-for-amego'); ?></label></th>
+        <td>
+            <select name="amount_precision" id="amount_precision">
+                <option value="0" <?php selected($general_info['amount_precision'], 0); ?>>0</option>
+                <option value="1" <?php selected($general_info['amount_precision'], 1); ?>>1</option>
+                <option value="2" <?php selected($general_info['amount_precision'], 2); ?>>2</option>
+                <option value="3" <?php selected($general_info['amount_precision'], 3); ?>>3</option>
+                <option value="4" <?php selected($general_info['amount_precision'], 4); ?>>4</option>
+                <option value="5" <?php selected($general_info['amount_precision'], 5); ?>>5</option>
+                <option value="6" <?php selected($general_info['amount_precision'], 6); ?>>6</option>
+                <option value="7" <?php selected($general_info['amount_precision'], 7); ?>>7</option>
+            </select>
+        </td>
     </tr>
 </table>

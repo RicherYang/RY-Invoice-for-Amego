@@ -15,16 +15,6 @@ $(function () {
         }).trigger('change');
     }
 
-    if ($('#abnormal_mode').length) {
-        $('#abnormal_mode').on('change', function () {
-            if ($(this).val() == 'product') {
-                $('#abnormal_product').closest('tr').show();
-            } else {
-                $('#abnormal_product').closest('tr').hide();
-            }
-        }).trigger('change');
-    }
-
     if ($('#_invoice_type').length) {
         $(document.body).on('change', '#_invoice_type', function () {
             switch ($(this).val()) {

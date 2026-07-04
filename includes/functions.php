@@ -2,7 +2,7 @@
 
 defined('ABSPATH') or exit;
 
-function rywai_invoice_type_to_name($invoice_type)
+function ry_ifamego_invoice_type_to_name($invoice_type)
 {
     static $type_name = [];
     if (empty($type_name)) {
@@ -16,7 +16,7 @@ function rywai_invoice_type_to_name($invoice_type)
     return $type_name[$invoice_type] ?? $invoice_type;
 }
 
-function rywai_carruer_type_to_name($carruer_type)
+function ry_ifamego_carruer_type_to_name($carruer_type)
 {
     static $type_name = [];
     if (empty($type_name)) {

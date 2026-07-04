@@ -37,7 +37,7 @@ abstract class RY_IFAMEGO_Abstract_Invoice
             return;
         }
 
-        $result = @json_decode(wp_remote_retrieve_body($response));
+        $result = json_decode(wp_remote_retrieve_body($response));
 
         if (!is_object($result)) {
             RY_Logs::log('amego-invoice', 'error', 'Link response parse failed', ['response' => wp_remote_retrieve_body($response)]);

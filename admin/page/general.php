@@ -73,8 +73,8 @@ final class RY_IFAMEGO_Admin_Page_General extends RY_Abstract_Admin_Page
         }
 
         $general_info = [
-            'abnormal_mode' => sanitize_key($_POST['abnormal_mode'] ?? ''),
-            'abnormal_product' => trim(sanitize_text_field($_POST['abnormal_product'] ?? '')),
+            'count_precision' => intval($_POST['count_precision'] ?? ''),
+            'amount_precision' => intval($_POST['amount_precision'] ?? ''),
         ];
 
         RY_IFAMEGO::update_option('general', $general_info, false);

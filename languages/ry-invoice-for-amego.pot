@@ -2,7 +2,7 @@
 # This file is distributed under the GPLv3.
 msgid ""
 msgstr ""
-"Project-Id-Version: RY Invoice for Amego 2026.7.3\n"
+"Project-Id-Version: RY Invoice for Amego 2026.7.4\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/ry-invoice-for-amego\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -61,23 +61,11 @@ msgid "General options"
 msgstr ""
 
 #: admin/page/html/general.php:9
-msgid "Amount abnormal mode"
+msgid "Item count precision"
 msgstr ""
 
-#: admin/page/html/general.php:12
-msgid "No action"
-msgstr ""
-
-#: admin/page/html/general.php:13
-msgid "Add one product to match order amount"
-msgstr ""
-
-#: admin/page/html/general.php:14
-msgid "Change order total amount"
-msgstr ""
-
-#: admin/page/html/general.php:19
-msgid "Fix amount product name"
+#: admin/page/html/general.php:24
+msgid "Item amount precision"
 msgstr ""
 
 #: admin/page/html/option.php:5
@@ -180,18 +168,6 @@ msgstr ""
 
 #: includes/invoice.php:40
 msgid "Customer"
-msgstr ""
-
-#: includes/invoice.php:126
-#: woocommerce/invoice.php:300
-#: woocommerce/invoice.php:312
-#: woocommerce/invoice.php:324
-#: woocommerce/invoice.php:333
-msgid "parcel"
-msgstr ""
-
-#: includes/invoice.php:209
-msgid "Discount"
 msgstr ""
 
 #: includes/ry-general/html/log-info.php:58
@@ -480,10 +456,17 @@ msgstr ""
 msgid "Invalid invoice error: %1$s (%2$s)"
 msgstr ""
 
-#: woocommerce/invoice.php:321
+#: woocommerce/invoice.php:318
+#: woocommerce/invoice.php:331
+#: woocommerce/invoice.php:344
+#: woocommerce/invoice.php:354
+msgid "parcel"
+msgstr ""
+
+#: woocommerce/invoice.php:341
 msgid "shipping fee"
 msgstr ""
 
-#: woocommerce/invoice.php:330
+#: woocommerce/invoice.php:351
 msgid "return fee"
 msgstr ""

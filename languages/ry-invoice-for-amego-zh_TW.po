@@ -116,7 +116,7 @@ msgstr "載具類型"
 #: includes/functions.php:24
 msgctxt "carruer type"
 msgid "amego_host"
-msgstr "雲端發票"
+msgstr "雲端發票 (光貿)"
 
 #: woocommerce/invoice-basic.php:49
 msgid " (send paper when win)"
@@ -290,18 +290,6 @@ msgctxt "invalid mode"
 msgid "auto ( when order status cancelled OR refunded )"
 msgstr "自動 (當訂單狀態為取消或退費)"
 
-#: admin/page/html/general.php:9
-msgid "Amount abnormal mode"
-msgstr "金額異常處理模式"
-
-#: admin/page/html/general.php:19
-msgid "Fix amount product name"
-msgstr "異常商品名稱"
-
-#: includes/invoice.php:209
-msgid "Discount"
-msgstr "折價"
-
 #: woocommerce/admin/settings/settings-invoice.php:96
 msgid "Custom track code"
 msgstr "指定字軌代號"
@@ -363,19 +351,18 @@ msgstr "開立發票錯誤：%1$s (%2$s)"
 msgid "Invoice create time"
 msgstr "發票開立時間"
 
-#: includes/invoice.php:126
-#: woocommerce/invoice.php:300
-#: woocommerce/invoice.php:312
-#: woocommerce/invoice.php:324
-#: woocommerce/invoice.php:333
+#: woocommerce/invoice.php:318
+#: woocommerce/invoice.php:331
+#: woocommerce/invoice.php:344
+#: woocommerce/invoice.php:354
 msgid "parcel"
 msgstr "批"
 
-#: woocommerce/invoice.php:321
+#: woocommerce/invoice.php:341
 msgid "shipping fee"
 msgstr "運費"
 
-#: woocommerce/invoice.php:330
+#: woocommerce/invoice.php:351
 msgid "return fee"
 msgstr "退款"
 
@@ -387,18 +374,6 @@ msgstr "一般"
 #: admin/page/html/general.php:5
 msgid "General options"
 msgstr "一般設定"
-
-#: admin/page/html/general.php:12
-msgid "No action"
-msgstr "沒有動作"
-
-#: admin/page/html/general.php:13
-msgid "Add one product to match order amount"
-msgstr "添加一個商品以符合訂單總金額"
-
-#: admin/page/html/general.php:14
-msgid "Change order total amount"
-msgstr "修改訂單總金額"
 
 #: admin/admin.php:68
 msgid "Not recommended enable two invoice plugins at the same time!"
@@ -491,3 +466,11 @@ msgstr "交易編號前綴字符串。只允許使用英文字母與數字。"
 #: woocommerce/admin/settings/invoice.php:51
 msgid "Trade no prefix only letters and numbers allowed, and maximum length is 3 characters."
 msgstr "交易編號前綴字只允許使用英文字母與數字，且不得超過 3 個字元。"
+
+#: admin/page/html/general.php:9
+msgid "Item count precision"
+msgstr "商品數量的小數點位數"
+
+#: admin/page/html/general.php:24
+msgid "Item amount precision"
+msgstr "商品金額的小數點位數"
