@@ -64,7 +64,7 @@ msgstr ""
 msgid "Item count precision"
 msgstr ""
 
-#: admin/page/html/general.php:24
+#: admin/page/html/general.php:23
 msgid "Item amount precision"
 msgstr ""
 
@@ -168,6 +168,10 @@ msgstr ""
 
 #: includes/invoice.php:40
 msgid "Customer"
+msgstr ""
+
+#: includes/invoice.php:41
+msgid "Taiwan"
 msgstr ""
 
 #: includes/ry-general/html/log-info.php:58
@@ -372,40 +376,40 @@ msgid "Disable auto get invoice for order billing country and shipping country a
 msgstr ""
 
 #: woocommerce/admin/settings/settings-invoice.php:66
-msgid "Delay time"
+msgid "Delay time (hours)"
 msgstr ""
 
-#: woocommerce/admin/settings/settings-invoice.php:73
+#: woocommerce/admin/settings/settings-invoice.php:75
 msgid "After N hours get invoice."
 msgstr ""
 
-#: woocommerce/admin/settings/settings-invoice.php:74
+#: woocommerce/admin/settings/settings-invoice.php:76
 msgid "According to WordPress cron job, the actual execution time will be later than the specified time."
 msgstr ""
 
-#: woocommerce/admin/settings/settings-invoice.php:78
+#: woocommerce/admin/settings/settings-invoice.php:80
 msgid "Invalid mode"
 msgstr ""
 
-#: woocommerce/admin/settings/settings-invoice.php:83
+#: woocommerce/admin/settings/settings-invoice.php:85
 msgctxt "invalid mode"
 msgid "manual"
 msgstr ""
 
-#: woocommerce/admin/settings/settings-invoice.php:84
+#: woocommerce/admin/settings/settings-invoice.php:86
 msgctxt "invalid mode"
 msgid "auto ( when order status cancelled OR refunded )"
 msgstr ""
 
-#: woocommerce/admin/settings/settings-invoice.php:88
+#: woocommerce/admin/settings/settings-invoice.php:90
 msgid "Trade no prefix"
 msgstr ""
 
-#: woocommerce/admin/settings/settings-invoice.php:91
+#: woocommerce/admin/settings/settings-invoice.php:93
 msgid "The prefix string of trade no. Only letters and numbers allowed."
 msgstr ""
 
-#: woocommerce/admin/settings/settings-invoice.php:96
+#: woocommerce/admin/settings/settings-invoice.php:98
 msgid "Custom track code"
 msgstr ""
 
@@ -431,12 +435,12 @@ msgid "Invalid tax ID number"
 msgstr ""
 
 #: woocommerce/invoice-basic.php:245
-#: woocommerce/invoice.php:248
+#: woocommerce/invoice.php:243
 msgid "Zero total fee without invoice"
 msgstr ""
 
 #: woocommerce/invoice-basic.php:252
-#: woocommerce/invoice.php:254
+#: woocommerce/invoice.php:249
 msgid "Negative total fee can't invoice"
 msgstr ""
 
@@ -456,17 +460,17 @@ msgstr ""
 msgid "Invalid invoice error: %1$s (%2$s)"
 msgstr ""
 
-#: woocommerce/invoice.php:318
-#: woocommerce/invoice.php:331
-#: woocommerce/invoice.php:344
-#: woocommerce/invoice.php:354
+#: woocommerce/invoice.php:313
+#: woocommerce/invoice.php:326
+#: woocommerce/invoice.php:339
+#: woocommerce/invoice.php:349
 msgid "parcel"
 msgstr ""
 
-#: woocommerce/invoice.php:341
+#: woocommerce/invoice.php:336
 msgid "shipping fee"
 msgstr ""
 
-#: woocommerce/invoice.php:351
+#: woocommerce/invoice.php:346
 msgid "return fee"
 msgstr ""
