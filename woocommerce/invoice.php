@@ -138,7 +138,7 @@ final class RY_IFAMEGO_WC_Invoice
             return;
         }
 
-        $invoice_date = new DateTime('@' . (string) $result->invoice_time);
+        $invoice_date = new DateTime('@' . $result->invoice_time);
         $invoice_date->setTimezone(wp_timezone());
 
         if (apply_filters('ry_invoice-wc_success_notice', true)) {
@@ -229,15 +229,10 @@ final class RY_IFAMEGO_WC_Invoice
             return;
         }
 
-        $country = $order->get_billing_country();
-        $countries = WC()->countries->get_countries();
-        $full_country = ($country && isset($countries[$country])) ? $countries[$country] : $country;
-
         $invoice_data = [
             'no' => $order->get_order_number(),
             'prefix' => RY_IFAMEGO::get_option('prefix', ''),
             'trackcode' => RY_IFAMEGO::get_option('trackcode', ''),
-            'address' => $full_country,
             'email' => $order->get_billing_email(),
             'total' => $order->get_total() - $order->get_total_refunded(),
         ];

@@ -38,7 +38,7 @@ final class RY_IFAMEGO_Invoice extends RY_IFAMEGO_Abstract_Invoice
             'TrackApiCode' => $invoice_data['trackcode'],
             'BuyerIdentifier' => '0000000000',
             'BuyerName' => __('Customer', 'ry-invoice-for-amego'),
-            'BuyerAddress' => $invoice_data['address'],
+            'BuyerAddress' => __('Taiwan', 'ry-invoice-for-amego'),
             'BuyerEmailAddress' => $invoice_data['email'],
             'MainRemark' => '#' . $invoice_data['no'],
             'CarrierType' => '',
