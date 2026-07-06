@@ -27,6 +27,9 @@ final class RY_IFAMEGO extends RY_Abstract_Basic
         load_plugin_textdomain('ry-invoice-for-amego', false, plugin_basename(dirname(__DIR__)) . '/languages');
         include_once RY_IFAMEGO_PLUGIN_DIR . 'includes/composer/vendor/woocommerce/action-scheduler/action-scheduler.php';
 
+        include_once RY_IFAMEGO_PLUGIN_DIR . 'includes/ry-general/logs.php';
+        RY_Logs::set_log(RY_IFAMEGO::get_option('log', 'no') === 'yes', 'amego-invoice');
+
         if (is_admin()) {
             include_once RY_IFAMEGO_PLUGIN_DIR . 'includes/update.php';
             RY_IFAMEGO_Update::update();
@@ -37,9 +40,6 @@ final class RY_IFAMEGO extends RY_Abstract_Basic
 
     public function do_wp_init(): void
     {
-        include_once RY_IFAMEGO_PLUGIN_DIR . 'includes/ry-general/logs.php';
-        RY_Logs::set_log(RY_IFAMEGO::get_option('log', 'no') === 'yes');
-
         include_once RY_IFAMEGO_PLUGIN_DIR . 'includes/functions.php';
         include_once RY_IFAMEGO_PLUGIN_DIR . 'includes/license.php';
         include_once RY_IFAMEGO_PLUGIN_DIR . 'includes/link-server.php';

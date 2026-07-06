@@ -54,7 +54,7 @@ final class RY_IFAMEGO_Admin_Page_Option extends RY_Abstract_Admin_Page
 
     public function do_admin_action(string $action): void
     {
-        if ($action !== 'ry-invoice-amego-option') {
+        if ('ry-invoice-amego-option' !== $action) {
             return;
         }
 
