@@ -1,132 +1,60 @@
 # RY Invoice for Amego
 
-A WordPress plugin that integrates [Amego](https://www.amego.com.tw/) E-invoice with WooCommerce, enabling Taiwan's government e-invoice system for your online store.
+RY Invoice for Amego 是一套提供 WooCommerce 使用的 Amego 電子發票外掛，協助商店在結帳與訂單流程中整合台灣電子發票功能。
 
-## Requirements
+## 功能介紹
 
-- **WordPress**: 6.8 or higher
-- **PHP**: 8.2 or higher
-- **WooCommerce**: required for invoice functionality
+### 結帳頁發票欄位
 
-## Installation
+外掛會在 WooCommerce 結帳流程中加入發票相關欄位，讓顧客可依需求選擇發票開立方式。
 
-1. Download or clone this repository into your WordPress plugins directory:
-   ```
-   wp-content/plugins/ry-invoice-for-amego/
-   ```
-2. Log in to your WordPress admin panel and navigate to **Plugins**.
-3. Activate **RY Invoice for Amego**.
-4. Navigate to **RY Invoice → Amego options** and enter your Amego API credentials (see [Configuration](#configuration)).
-5. Activate your plugin license under **RY Invoice → License**.
+支援的發票類型包含：
 
-## Usage
+- **個人發票**
+- **公司戶發票**
+- **捐贈發票**
 
-Once the plugin is installed, activated, and licensed, it adds an **Invoice** section to the WooCommerce checkout page. Customers can choose from the following invoice options:
+### 個人發票載具選擇
 
-### Invoice Types
+當顧客選擇個人發票時，可搭配不同載具類型使用，目前支援：
 
-| Type | Description |
-|------|-------------|
-| `personal` | Personal e-invoice (stored in carrier) |
-| `company` | Company/Business invoice (requires tax ID) |
-| `donate` | Donate invoice to a charity |
+- **Amego 雲端載具**
+- **自然人憑證**
+- **手機條碼**
 
-### Carrier Types (Personal Invoice)
+### 公司戶發票資料處理
 
-| Type | Description |
-|------|-------------|
-| `amego_host` | Amego cloud carrier (paper invoice mailed on lottery win) |
-| `MOICA` | Government citizen digital certificate |
-| `phone_barcode` | Mobile barcode carrier |
+針對公司戶發票，外掛可配合訂單資料與結帳欄位，提供公司開立發票所需資訊，方便商店建立統編發票流程。
 
-### Example: Placing an Order with an Invoice
+### 捐贈發票流程
 
-1. A customer proceeds to the WooCommerce checkout page.
-2. In the **Invoice** section, the customer selects:
-   - **Invoice type**: `personal`
-   - **Carrier type**: `phone_barcode`
-   - **Carrier number**: `/ABC1234`
-3. Upon order completion, the plugin issues the e-invoice through the Amego API and stores it against the order.
+顧客可在結帳時選擇捐贈發票，將發票捐出，讓商店提供更多元的發票使用方式。
 
-## Configuration
+### 訂單自動開立發票
 
-Navigate to **RY Invoice** in the WordPress admin menu to access the settings pages.
+外掛可依訂單狀態自動處理發票開立，讓商店在訂單成立後，配合既有流程完成電子發票作業。
 
-### Amego Options (`RY Invoice → Amego options`)
+### 訂單取消或退款時處理作廢
 
-| Setting | Description |
-|---------|-------------|
-| **Test mode** | Enable sandbox/test mode for the Amego API |
-| **Invoice** | Your Amego invoice identifier |
-| **AppKey** | Your Amego API application key |
-| **Log** | Enable debug logging (logs stored in WooCommerce logs) |
+當訂單取消或退款時，外掛可依設定自動處理發票作廢流程，減少人工操作負擔。
 
-### General Settings (`RY Invoice → General`)
+### 發票資訊寫入訂單
 
-| Setting | Description |
-|---------|-------------|
-| **Count precision** | Decimal places for item quantities |
-| **Amount precision** | Decimal places for monetary amounts |
+成功開立後，發票號碼、隨機碼與開立時間會保存至訂單資料中，方便後續查詢與管理。
 
-## Development
+### 會員訂單列表顯示發票號碼
 
-### Prerequisites
+在啟用相關設定後，顧客可於 WooCommerce 會員訂單列表中查看發票號碼，提升查詢便利性。
 
-- [Node.js](https://nodejs.org/) (LTS recommended)
-- [npm](https://www.npmjs.com/)
-- [WP-CLI](https://wp-cli.org/) (required for i18n commands)
+### 後台操作與紀錄
 
-### Setup
+外掛提供後台相關設定與紀錄能力，包含：
 
-```bash
-npm install
-```
+- **Amego API 資訊設定**
+- **沙盒模式切換**
+- **除錯紀錄啟用**
+- **商品數量與金額精度設定**
 
-### Available Scripts
+### WooCommerce 整合
 
-| Command | Description |
-|---------|-------------|
-| `npm start` | Start webpack in watch/development mode |
-| `npm run build` | Build assets and generate translation files (`.pot` / `.po`) |
-| `npm run build:all` | Build assets and generate all translation artefacts |
-| `npm run build:assets` | Build JavaScript/CSS assets with webpack |
-| `npm run build:i18n` | Generate all i18n files (`.pot`, `.po`, `.mo`, `.php`, `.json`) |
-| `npm run update` | Update npm dependencies |
-
-### Project Structure
-
-```
-ry-invoice-for-amego/
-├── admin/              # WordPress admin UI (pages, AJAX handlers)
-├── assets/             # Compiled JS/CSS assets (build output)
-├── assets-src/         # Source JS/CSS files
-├── includes/           # Core plugin classes and abstracts
-│   ├── abstracts/      # Abstract base classes
-│   ├── composer/       # Composer-managed dependencies
-│   └── ry-general/     # Shared utility classes (logging, etc.)
-├── languages/          # Translation files (.pot, .po, .mo, .json)
-├── woocommerce/        # WooCommerce integration
-├── package.json
-├── webpack.config.js
-└── ry-invoice-for-amego.php   # Plugin entry point
-```
-
-## Contributing
-
-Contributions are welcome! Please follow these steps:
-
-1. Fork the repository and create a feature branch from `main`.
-2. Make your changes, following the existing coding style (PSR-style PHP, WordPress coding standards).
-3. Run `npm run build` before committing to ensure compiled assets are up to date.
-4. Open a pull request with a clear description of the change and the motivation for it.
-
-Please report bugs and feature requests via [GitHub Issues](https://github.com/RicherYang/RY-Invoice-for-Amego/issues).
-
-## License
-
-This plugin is licensed under the [GNU General Public License v3.0](LICENSE).
-
----
-
-**Plugin URI**: https://ry-plugin.com/ry-invoice-for-amego  
-**Author**: [Richer Yang](https://richer.tw/)
+外掛以 WooCommerce 訂單流程為核心，整合結帳欄位、訂單資料、後台管理與發票處理機制，讓商店可在既有購物流程中使用 Amego 電子發票功能。
