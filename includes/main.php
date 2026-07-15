@@ -47,7 +47,6 @@ final class RY_IFAMEGO extends AbstractBasic
         RY_IFAMEGO_Updater::instance();
 
         if (is_admin()) {
-            include_once RY_IFAMEGO_PLUGIN_DIR . 'includes/ry-paid/admin-license.php';
             include_once RY_IFAMEGO_PLUGIN_DIR . 'admin/admin.php';
             RY_IFAMEGO_Admin::instance();
         }
