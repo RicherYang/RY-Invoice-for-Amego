@@ -6,7 +6,7 @@ use RY\General\Logs;
 
 final class RY_IFAMEGO_Invoice extends RY_IFAMEGO_Abstract_Invoice
 {
-    protected static ?self $_instance = null;
+    private static ?self $_instance = null;
 
     private array $api_test_url = [
         'get' => 'https://invoice-api.amego.tw/json/f0401',

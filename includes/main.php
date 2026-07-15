@@ -11,7 +11,7 @@ final class RY_IFAMEGO extends AbstractBasic
 
     public const PLUGIN_NAME = 'RY Invoice for Amego';
 
-    protected static ?self $_instance = null;
+    private static ?self $_instance = null;
 
     public static function instance(): RY_IFAMEGO
     {
