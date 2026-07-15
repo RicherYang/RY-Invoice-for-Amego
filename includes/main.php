@@ -2,9 +2,10 @@
 
 defined('ABSPATH') or exit;
 
-include_once RY_IFAMEGO_PLUGIN_DIR . 'includes/ry-general/abstract-basic.php';
+use RY\General\AbstractBasic;
+use RY\General\Logs;
 
-final class RY_IFAMEGO extends RY_Abstract_Basic
+final class RY_IFAMEGO extends AbstractBasic
 {
     public const OPTION_PREFIX = 'RY_IFAMEGO_';
 
@@ -27,8 +28,7 @@ final class RY_IFAMEGO extends RY_Abstract_Basic
         load_plugin_textdomain('ry-invoice-for-amego', false, plugin_basename(dirname(__DIR__)) . '/languages');
         include_once RY_IFAMEGO_PLUGIN_DIR . 'includes/vendor/woocommerce/action-scheduler/action-scheduler.php';
 
-        include_once RY_IFAMEGO_PLUGIN_DIR . 'includes/ry-general/logs.php';
-        RY_Logs::set_log(RY_IFAMEGO::get_option('log', 'no') === 'yes', 'amego-invoice');
+        Logs::set_log(RY_IFAMEGO::get_option('log', 'no') === 'yes', 'amego-invoice');
 
         if (is_admin()) {
             include_once RY_IFAMEGO_PLUGIN_DIR . 'includes/update.php';
@@ -48,7 +48,6 @@ final class RY_IFAMEGO extends RY_Abstract_Basic
 
         if (is_admin()) {
             include_once RY_IFAMEGO_PLUGIN_DIR . 'includes/ry-paid/admin-license.php';
-            include_once RY_IFAMEGO_PLUGIN_DIR . 'includes/ry-general/admin-logs.php';
             include_once RY_IFAMEGO_PLUGIN_DIR . 'admin/admin.php';
             RY_IFAMEGO_Admin::instance();
         }
