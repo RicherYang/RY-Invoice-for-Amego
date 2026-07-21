@@ -2,6 +2,8 @@
 
 defined('ABSPATH') or exit;
 
+use RY\Invoice\Amego\WooCommerce\Invoice;
+
 final class RY_IFAMEGO_Cron
 {
     public static function add_action(): void
@@ -22,7 +24,7 @@ final class RY_IFAMEGO_Cron
         if (function_exists('wc_get_order')) {
             $order = wc_get_order($object_ID);
             if ($order) {
-                RY_IFAMEGO_WC_Invoice::instance()->get_invoice($order);
+                Invoice::instance()->get_invoice($order);
             }
         }
     }
@@ -32,7 +34,7 @@ final class RY_IFAMEGO_Cron
         if (function_exists('wc_get_order')) {
             $order = wc_get_order($object_ID);
             if ($order) {
-                RY_IFAMEGO_WC_Invoice::instance()->invalid_invoice($order);
+                Invoice::instance()->invalid_invoice($order);
             }
         }
     }

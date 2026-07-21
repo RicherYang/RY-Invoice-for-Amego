@@ -4,6 +4,8 @@ defined('ABSPATH') or exit;
 
 use RY\General\AbstractBasic;
 use RY\General\Logs;
+use RY\Invoice\Amego\WooCommerce\Fields;
+use RY\Invoice\Amego\WooCommerce\Invoice;
 
 final class RY_IFAMEGO extends AbstractBasic
 {
@@ -60,12 +62,10 @@ final class RY_IFAMEGO extends AbstractBasic
         }
 
         if (has_action('woocommerce_init')) {
-            include_once RY_IFAMEGO_PLUGIN_DIR . 'woocommerce/invoice-basic.php';
-            RY_IFAMEGO_WC_Invoice_Basic::instance();
+            Fields::instance();
 
             if (RY_IFAMEGO_License::instance()->is_activated()) {
-                include_once RY_IFAMEGO_PLUGIN_DIR . 'woocommerce/invoice.php';
-                RY_IFAMEGO_WC_Invoice::instance();
+                Invoice::instance();
             }
         }
     }
