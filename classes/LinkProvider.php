@@ -1,10 +1,12 @@
 <?php
 
+namespace RY\Invoice\Amego;
+
 defined('ABSPATH') or exit;
 
 use RY\General\Logs;
 
-final class RY_IFAMEGO_Invoice extends RY_IFAMEGO_Abstract_Invoice
+final class LinkProvider
 {
     private static ?self $_instance = null;
 
@@ -18,7 +20,7 @@ final class RY_IFAMEGO_Invoice extends RY_IFAMEGO_Abstract_Invoice
         'invalid' => 'https://invoice-api.amego.tw/json/f0501',
     ];
 
-    public static function instance(): RY_IFAMEGO_Invoice
+    public static function instance(): LinkProvider
     {
         if (null === self::$_instance) {
             self::$_instance = new self();
@@ -184,7 +186,7 @@ final class RY_IFAMEGO_Invoice extends RY_IFAMEGO_Abstract_Invoice
 
     public function get_info()
     {
-        $general_info = RY_IFAMEGO::get_option('general', []);
+        $general_info = \RY_IFAMEGO::get_option('general', []);
         if (!is_array($general_info)) {
             $general_info = [];
         }
@@ -201,7 +203,7 @@ final class RY_IFAMEGO_Invoice extends RY_IFAMEGO_Abstract_Invoice
 
     public function get_api_info()
     {
-        $api_info = RY_IFAMEGO::get_option('apiinfo', []);
+        $api_info = \RY_IFAMEGO::get_option('apiinfo', []);
         if (!is_array($api_info)) {
             $api_info = [];
         }
@@ -218,5 +220,50 @@ final class RY_IFAMEGO_Invoice extends RY_IFAMEGO_Abstract_Invoice
         }
 
         return $api_info;
+    }
+
+    protected function generate_trade_no($object_ID, $order_prefix = '')
+    {
+        $trade_no = $order_prefix . $object_ID . 'T' . random_int(0, 9) . strrev((string) time());
+        $trade_no = apply_filters('ry_invoice_amego-trade_no', $trade_no, $object_ID, $order_prefix);
+
+        return substr($trade_no, 0, 18);
+    }
+
+    protected function link_server(string $url, array $args, string $invoice, string $AppKey, int $timeout = 30)
+    {
+        wc_set_time_limit(40);
+
+        $now = new \DateTime('now', new \DateTimeZone('Asia/Taipei'));
+        $post_data = [
+            'invoice' => $invoice,
+            'data' => wp_json_encode($args, JSON_UNESCAPED_UNICODE),
+            'time' => $now->getTimestamp(),
+        ];
+        $post_data['sign'] = hash('md5', $post_data['data'] . $post_data['time'] . $AppKey);
+        $response = wp_remote_post($url, [
+            'timeout' => $timeout,
+            'body' => $post_data,
+            'user-agent' => apply_filters('http_headers_useragent', 'WordPress/' . get_bloginfo('version')),
+        ]);
+
+        if (is_wp_error($response)) {
+            Logs::log('amego-invoice', 'error', 'Link failed', $response->get_error_messages());
+            return;
+        }
+
+        if (wp_remote_retrieve_response_code($response) != 200) {
+            Logs::log('amego-invoice', 'error', 'Link HTTP status error', ['status' => wp_remote_retrieve_response_code($response)]);
+            return;
+        }
+
+        $result = json_decode(wp_remote_retrieve_body($response));
+
+        if (!is_object($result)) {
+            Logs::log('amego-invoice', 'error', 'Link response parse failed', ['response' => wp_remote_retrieve_body($response)]);
+            return;
+        }
+
+        return $result;
     }
 }

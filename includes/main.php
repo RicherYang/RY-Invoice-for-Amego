@@ -4,6 +4,11 @@ defined('ABSPATH') or exit;
 
 use RY\General\AbstractBasic;
 use RY\General\Logs;
+use RY\Invoice\Amego\Admin\Admin;
+use RY\Invoice\Amego\Cron;
+use RY\Invoice\Amego\License;
+use RY\Invoice\Amego\Update;
+use RY\Invoice\Amego\Updater;
 use RY\Invoice\Amego\WooCommerce\Fields;
 use RY\Invoice\Amego\WooCommerce\Invoice;
 
@@ -33,8 +38,7 @@ final class RY_IFAMEGO extends AbstractBasic
         Logs::set_log(RY_IFAMEGO::get_option('log', 'no') === 'yes', 'amego-invoice');
 
         if (is_admin()) {
-            include_once RY_IFAMEGO_PLUGIN_DIR . 'includes/update.php';
-            RY_IFAMEGO_Update::update();
+            Update::update();
         }
 
         add_action('init', [$this, 'do_wp_init'], 9);
@@ -42,29 +46,20 @@ final class RY_IFAMEGO extends AbstractBasic
 
     public function do_wp_init(): void
     {
-        include_once RY_IFAMEGO_PLUGIN_DIR . 'includes/functions.php';
-        include_once RY_IFAMEGO_PLUGIN_DIR . 'includes/license.php';
-        include_once RY_IFAMEGO_PLUGIN_DIR . 'includes/link-server.php';
-        include_once RY_IFAMEGO_PLUGIN_DIR . 'includes/updater.php';
-        RY_IFAMEGO_Updater::instance();
+        Updater::instance();
 
         if (is_admin()) {
-            include_once RY_IFAMEGO_PLUGIN_DIR . 'admin/admin.php';
-            RY_IFAMEGO_Admin::instance();
+            Admin::instance();
         }
 
-        if (RY_IFAMEGO_License::instance()->is_activated()) {
-            include_once RY_IFAMEGO_PLUGIN_DIR . 'includes/abstracts/abstract-amego.php';
-            include_once RY_IFAMEGO_PLUGIN_DIR . 'includes/invoice.php';
-
-            include_once RY_IFAMEGO_PLUGIN_DIR . 'includes/cron.php';
-            RY_IFAMEGO_Cron::add_action();
+        if (License::instance()->is_activated()) {
+            Cron::add_action();
         }
 
         if (has_action('woocommerce_init')) {
             Fields::instance();
 
-            if (RY_IFAMEGO_License::instance()->is_activated()) {
+            if (License::instance()->is_activated()) {
                 Invoice::instance();
             }
         }
