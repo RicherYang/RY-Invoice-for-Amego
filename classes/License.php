@@ -5,7 +5,7 @@ namespace RY\Invoice\Amego;
 defined('ABSPATH') or exit;
 
 use RY\Invoice\Amego\LinkServer;
-use RY\Paid\AbstractLicense;
+use RY\Paid\V20260724\AbstractLicense;
 
 final class License extends AbstractLicense
 {

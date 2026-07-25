@@ -2,9 +2,9 @@
 
 defined('ABSPATH') or exit;
 
-use RY\General\AbstractBasic;
-use RY\General\ActionScheduler;
-use RY\General\Logs;
+use RY\General\V20260724\AbstractBasic;
+use RY\General\V20260724\ActionScheduler;
+use RY\General\V20260724\Logs;
 use RY\Invoice\Amego\Admin\Admin;
 use RY\Invoice\Amego\Cron;
 use RY\Invoice\Amego\License;

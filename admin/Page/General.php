@@ -4,7 +4,7 @@ namespace RY\Invoice\Amego\Admin\Page;
 
 defined('ABSPATH') or exit;
 
-use RY\General\AbstractAdminPage;
+use RY\General\V20260724\AbstractAdminPage;
 use RY\Invoice\Amego\Admin\Admin;
 
 final class General extends AbstractAdminPage
