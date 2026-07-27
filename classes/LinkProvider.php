@@ -4,7 +4,8 @@ namespace RY\Invoice\Amego;
 
 defined('ABSPATH') or exit;
 
-use RY\General\V20260724\Logs;
+use RY\General\V20260727\Logs;
+use RY\General\V20260727\Utils;
 
 final class LinkProvider
 {
@@ -212,9 +213,9 @@ final class LinkProvider
             'invoice' => '',
             'AppKey' => '',
         ], $api_info);
-        $api_info['testmode'] = $api_info['testmode'] === 'yes';
+        $api_info['testmode'] = Utils::string_to_bool($api_info['testmode']);
 
-        if ($load_test && $api_info['testmode'] === true) {
+        if ($load_test && $api_info['testmode']) {
             $api_info['invoice'] = '12345678';
             $api_info['AppKey'] = 'sHeq7t8G1wiQvhAuIM27';
         }

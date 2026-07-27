@@ -8,7 +8,7 @@ use RY\Invoice\Amego\Admin\Ajax;
 use RY\Invoice\Amego\Admin\Page\General as PageGeneral;
 use RY\Invoice\Amego\Admin\Page\Option as PageOption;
 use RY\Invoice\Amego\License;
-use RY\Paid\V20260724\AbstractAdmin;
+use RY\Paid\V20260727\AbstractAdmin;
 
 final class Admin extends AbstractAdmin
 {
@@ -82,6 +82,7 @@ final class Admin extends AbstractAdmin
         $menu_list[] = [
             'name' => __('E-Invoice', 'ry-invoice-for-amego'),
             'slug' => 'ry-invoice',
+            'capability' => 'manage_options',
             'function' => [$this, 'show_page'],
         ];
 
@@ -97,6 +98,7 @@ final class Admin extends AbstractAdmin
         }
 
         echo '<div class="wrap">';
+        echo '<h1 class="wp-heading">' . esc_html__('E-Invoice', 'ry-invoice-for-amego') . '</h1>';
 
         echo '<nav class="nav-tab-wrapper wp-clearfix">';
         foreach ($navs as $nav) {

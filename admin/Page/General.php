@@ -4,7 +4,7 @@ namespace RY\Invoice\Amego\Admin\Page;
 
 defined('ABSPATH') or exit;
 
-use RY\General\V20260724\AbstractAdminPage;
+use RY\General\V20260727\AbstractAdminPage;
 
 final class General extends AbstractAdminPage
 {
@@ -21,7 +21,7 @@ final class General extends AbstractAdminPage
     public static function add_nav(array $navs): array
     {
         $navs[] = [
-            'name' => __('General', 'ry-invoice-for-amego'),
+            'name' => __('Options', 'ry-invoice-for-amego'),
             'type' => 'general',
         ];
 

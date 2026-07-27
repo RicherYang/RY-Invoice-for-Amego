@@ -8,7 +8,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2026-06-29T20:45:49+08:00\n"
-"PO-Revision-Date: 2026-07-24 12:02+0800\n"
+"PO-Revision-Date: 2026-07-26 23:11+0800\n"
 "Language: zh_TW\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Poedit-KeywordsList: __;_e;esc_html_e;esc_html_x:1,2c;esc_html__;esc_attr_e;esc_attr_x:1,2c;esc_attr__;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;_x:1,2c;_n:1,2;_n_noop:1,2;__ngettext:1,2;__ngettext_noop:1,2;_c,_nc:4c,1,2\n"
@@ -44,11 +44,11 @@ msgid "Richer Yang"
 msgstr "Richer Yang"
 
 #: admin/Admin.php:83
+#: admin/Admin.php:101
 msgid "E-Invoice"
 msgstr "電子發票"
 
-#: admin/Page/Option.php:15
-#: admin/Page/Option.php:23
+#: admin/Page/Option.php:22
 msgid "Amego options"
 msgstr "光貿設定"
 
@@ -56,16 +56,16 @@ msgstr "光貿設定"
 msgid "RY Tools"
 msgstr "RY Tools"
 
-#: admin/Page/html/option.php:10
+#: admin/Page/html/option.php:11
 msgid "API credentials"
 msgstr "API 憑證"
 
-#: admin/Page/html/option.php:30
-#: admin/Page/html/option.php:33
+#: admin/Page/html/option.php:31
+#: admin/Page/html/option.php:34
 msgid "Sandbox"
 msgstr "測試模式"
 
-#: admin/Page/html/option.php:41
+#: admin/Page/html/option.php:42
 #: woocommerce/Admin/MetaBoxes/Info.php:44
 #: woocommerce/Admin/MetaBoxes/Info.php:131
 #: woocommerce/Fields.php:67
@@ -73,15 +73,15 @@ msgstr "測試模式"
 msgid "Tax ID number"
 msgstr "公司統一編號"
 
-#: admin/Page/html/option.php:45
+#: admin/Page/html/option.php:46
 msgid "App Key"
 msgstr "App Key"
 
-#: admin/Page/html/option.php:36
+#: admin/Page/html/option.php:37
 msgid "Note: For developers use ONLY."
 msgstr "注意：僅供開發者使用。"
 
-#: admin/Page/html/option.php:35
+#: admin/Page/html/option.php:36
 msgid "Enable sandbox"
 msgstr "啟用測試模式"
 
@@ -178,7 +178,7 @@ msgstr "總額負數不開立發票"
 #: woocommerce/Admin/MetaBoxes/Info.php:104
 #: woocommerce/Admin/MetaBoxes/Info.php:108
 #: woocommerce/Admin/MetaBoxes/Info.php:112
-#: woocommerce/Admin/Order.php:99
+#: woocommerce/Admin/Order.php:100
 #: woocommerce/Fields.php:229
 #: woocommerce/Invoice.php:153
 #: woocommerce/Invoice.php:209
@@ -303,24 +303,24 @@ msgid "Invalid invoice.<br>Please wait."
 msgstr "作廢發票中。<br>請耐心等待。"
 
 #. translators: %s: count
-#: woocommerce/Admin/Order.php:90
+#: woocommerce/Admin/Order.php:91
 #, php-format
 msgid "%s order issue invoice."
 msgid_plural "%s orders issue invoice."
 msgstr[0] "%s 筆訂單開立發票。"
 
 #: woocommerce/Admin/MetaBoxes/Info.php:104
-#: woocommerce/Admin/Order.php:120
+#: woocommerce/Admin/Order.php:121
 msgid "Zero no invoice"
 msgstr "零元不開立"
 
 #: woocommerce/Admin/MetaBoxes/Info.php:108
-#: woocommerce/Admin/Order.php:121
+#: woocommerce/Admin/Order.php:122
 msgid "Negative no invoice"
 msgstr "負數不開立"
 
 #: woocommerce/Admin/MetaBoxes/Info.php:151
-#: woocommerce/Admin/Order.php:130
+#: woocommerce/Admin/Order.php:131
 msgid "Issue invoice"
 msgstr "開立發票"
 
@@ -366,11 +366,6 @@ msgstr "運費"
 msgid "return fee"
 msgstr "退款"
 
-#: admin/Page/General.php:16
-#: admin/Page/General.php:26
-msgid "General"
-msgstr "一般"
-
 #: admin/Page/html/general.php:10
 msgid "General options"
 msgstr "一般設定"
@@ -379,8 +374,9 @@ msgstr "一般設定"
 msgid "Not recommended enable two invoice plugins at the same time!"
 msgstr "不建議同時啟用兩個發票外掛！"
 
-#: admin/Page/General.php:84
-#: admin/Page/Option.php:76
+#: admin/Page/General.php:59
+#: admin/Page/Option.php:58
+#: includes/ry-general/Page/Option.php:64
 msgid "Settings saved."
 msgstr "設定已儲存。"
 
@@ -393,7 +389,7 @@ msgid "According to WordPress cron job, the actual execution time will be later 
 msgstr "基於 WordPress 的排程系統，實際執行時間將比指定的時間晚。"
 
 #: woocommerce/Admin/MetaBoxes/Info.php:95
-#: woocommerce/Admin/Order.php:119
+#: woocommerce/Admin/Order.php:120
 msgid "Wait get invoice"
 msgstr "待開立發票"
 
@@ -413,16 +409,16 @@ msgstr "取消開立"
 msgid "Download"
 msgstr "下載"
 
-#: admin/Page/html/option.php:14
-#: admin/Page/html/option.php:17
+#: admin/Page/html/option.php:15
+#: admin/Page/html/option.php:18
 msgid "Debug log"
 msgstr "除錯記錄"
 
-#: admin/Page/html/option.php:19
+#: admin/Page/html/option.php:20
 msgid "Enable log"
 msgstr "啓用記錄"
 
-#: classes/LinkProvider.php:44
+#: classes/LinkProvider.php:45
 msgid "Customer"
 msgstr "消費者"
 
@@ -437,7 +433,7 @@ msgstr "光貿電子發票"
 msgid "Invalid invoice error: %1$s (%2$s)"
 msgstr "作廢發票錯誤：%1$s (%2$s)"
 
-#: admin/Page/html/option.php:22
+#: admin/Page/html/option.php:23
 msgid "<strong>Note:</strong> The log may contain personal information."
 msgstr "<strong>注意</strong>：紀錄可能包含個人資料。"
 
@@ -461,7 +457,7 @@ msgstr "商品數量的小數點位數"
 msgid "Item amount precision"
 msgstr "商品金額的小數點位數"
 
-#: classes/LinkProvider.php:45
+#: classes/LinkProvider.php:46
 msgid "Taiwan"
 msgstr "台灣"
 
@@ -481,16 +477,16 @@ msgstr "紀錄類別"
 msgid "Log Files"
 msgstr "紀錄檔案"
 
-#: includes/ry-general/Page/Logs.php:134
+#: includes/ry-general/Page/Logs.php:136
 msgid "Delete successful."
 msgstr "刪除成功。"
 
-#: includes/ry-general/Page/Logs.php:141
+#: includes/ry-general/Page/Logs.php:143
 msgid "Delete failed."
 msgstr "刪除失敗。"
 
 #: includes/ry-general/Page/Logs.php:27
-#: includes/ry-general/Page/Logs.php:73
+#: includes/ry-general/Page/Logs.php:75
 msgid "Logs"
 msgstr "紀錄"
 
@@ -510,7 +506,7 @@ msgstr "詳細資訊"
 msgid "%1$s: Your <a href=\"%2$s\">license</a> is not activated yet!"
 msgstr "%1$s: 你的<a href=\"%2$s\">授權</a>尚未啟用！"
 
-#: includes/ry-general/Page/Logs.php:75
+#: includes/ry-general/Page/Logs.php:77
 msgid "No logs found."
 msgstr "没有紀錄檔案。"
 
@@ -539,3 +535,23 @@ msgstr "紀錄檔案將在 %d 天後刪除"
 #: includes/ry-general/Page/html/logs-select.php:35
 msgid "Dir size:"
 msgstr "目錄大小："
+
+#: admin/Page/General.php:24
+#: includes/ry-general/Page/Option.php:21
+#: includes/ry-general/Page/Option.php:35
+msgid "Options"
+msgstr "設定"
+
+#: includes/ry-general/Page/html/options.php:10
+#: includes/ry-general/Page/html/options.php:13
+msgid "Enable tracking"
+msgstr "啟用追蹤"
+
+#: includes/ry-general/Page/html/options.php:15
+msgid "Allow usage of RY Plugin to be tracked"
+msgstr "允許 RY Plugin 追蹤使用情況"
+
+#: includes/ry-general/Page/html/options.php:18
+#, php-format
+msgid "Read about what usage data is tracked at: %s ."
+msgstr "閱讀 %s 以理解我們追蹤那些數據。"
