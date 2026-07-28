@@ -4,7 +4,6 @@ namespace RY\Invoice\Amego\Admin;
 
 defined('ABSPATH') or exit;
 
-use RY\Invoice\Amego\Admin\Ajax;
 use RY\Invoice\Amego\Admin\Page\General as PageGeneral;
 use RY\Invoice\Amego\Admin\Page\Option as PageOption;
 use RY\Invoice\Amego\License;

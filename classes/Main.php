@@ -1,19 +1,16 @@
 <?php
 
+namespace RY\Invoice\Amego;
+
 defined('ABSPATH') or exit;
 
 use RY\General\V20260727\AbstractBasic;
 use RY\General\V20260727\Logs;
 use RY\Invoice\Amego\Admin\Admin;
-use RY\Invoice\Amego\Cron;
-use RY\Invoice\Amego\License;
-use RY\Invoice\Amego\LinkServer;
-use RY\Invoice\Amego\Update;
-use RY\Invoice\Amego\Updater;
 use RY\Invoice\Amego\WooCommerce\Fields;
 use RY\Invoice\Amego\WooCommerce\Invoice;
 
-final class RY_IFAMEGO extends AbstractBasic
+final class Main extends AbstractBasic
 {
     public const OPTION_PREFIX = 'RY_IFAMEGO_';
 
@@ -21,7 +18,7 @@ final class RY_IFAMEGO extends AbstractBasic
 
     private static ?self $_instance = null;
 
-    public static function instance(): RY_IFAMEGO
+    public static function instance(): Main
     {
         if (null === self::$_instance) {
             self::$_instance = new self();
@@ -35,7 +32,7 @@ final class RY_IFAMEGO extends AbstractBasic
     {
         load_plugin_textdomain('ry-invoice-for-amego', false, plugin_basename(dirname(__DIR__)) . '/languages');
 
-        Logs::set_log(RY_IFAMEGO::get_option('log', 'no') === 'yes', 'amego-invoice');
+        Logs::set_log(self::get_option('log', 'no') === 'yes', 'amego-invoice');
 
         if (is_admin()) {
             Update::update();
@@ -79,5 +76,6 @@ final class RY_IFAMEGO extends AbstractBasic
     public static function plugin_deactivation(): void
     {
         wp_unschedule_hook(self::OPTION_PREFIX . 'check_expire');
+        as_unschedule_all_actions('RY_GENERAL_usage_tracking');
     }
 }

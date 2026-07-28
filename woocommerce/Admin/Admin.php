@@ -4,8 +4,6 @@ namespace RY\Invoice\Amego\WooCommerce\Admin;
 
 defined('ABSPATH') or exit;
 
-use RY\Invoice\Amego\WooCommerce\Admin\Order;
-use RY\Invoice\Amego\WooCommerce\Admin\Settings;
 use RY\Invoice\Amego\WooCommerce\Admin\Settings\Invoice;
 
 final class Admin

@@ -18,6 +18,8 @@
 
 defined('ABSPATH') or exit;
 
+use RY\Invoice\Amego\Main;
+
 define('RY_IFAMEGO_VERSION', '2026.7.27');
 define('RY_IFAMEGO_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('RY_IFAMEGO_PLUGIN_DIR', plugin_dir_path(__FILE__));
@@ -25,14 +27,8 @@ define('RY_IFAMEGO_PLUGIN_BASENAME', plugin_basename(__FILE__));
 define('RY_IFAMEGO_PLUGIN_LANGUAGES_DIR', plugin_dir_path(__FILE__) . '/languages');
 
 require_once RY_IFAMEGO_PLUGIN_DIR . 'includes/vendor/autoload.php';
-require_once RY_IFAMEGO_PLUGIN_DIR . 'includes/main.php';
 
-register_activation_hook(__FILE__, ['RY_IFAMEGO', 'plugin_activation']);
-register_deactivation_hook(__FILE__, ['RY_IFAMEGO', 'plugin_deactivation']);
+register_activation_hook(__FILE__, [Main::class, 'plugin_activation']);
+register_deactivation_hook(__FILE__, [Main::class, 'plugin_deactivation']);
 
-function RY_IFAMEGO(): RY_IFAMEGO
-{
-    return RY_IFAMEGO::instance();
-}
-
-RY_IFAMEGO();
+Main::instance();

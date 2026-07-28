@@ -4,6 +4,7 @@ namespace RY\Invoice\Amego\WooCommerce;
 
 defined('ABSPATH') or exit;
 
+use RY\Invoice\Amego\Main;
 use RY\Invoice\Amego\Utils;
 
 final class Fields
@@ -75,7 +76,7 @@ final class Fields
             ],
         ];
 
-        if (\RY_IFAMEGO::get_option('move_billing_company', 'no') === 'yes') {
+        if (Main::get_option('move_billing_company', 'no') === 'yes') {
             unset($fields['billing']['billing_company']);
             $fields['invoice']['invoice_company_name'] = [
                 'label' => __('Company name', 'ry-invoice-for-amego'),
@@ -206,7 +207,7 @@ final class Fields
                 $order->delete_meta_data('_' . $key);
             }
         }
-        if (\RY_IFAMEGO::get_option('move_billing_company', 'no') === 'yes') {
+        if (Main::get_option('move_billing_company', 'no') === 'yes') {
             $order->set_billing_company($data['invoice_company_name'] ?? '');
         }
     }
