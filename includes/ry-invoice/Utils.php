@@ -1,6 +1,6 @@
 <?php
 
-namespace RY\Invoice\Amego;
+namespace RY\Invoice\V20260729;
 
 defined('ABSPATH') or exit;
 

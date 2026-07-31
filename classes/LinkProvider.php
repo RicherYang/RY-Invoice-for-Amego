@@ -4,10 +4,11 @@ namespace RY\Invoice\Amego;
 
 defined('ABSPATH') or exit;
 
-use RY\General\V20260727\Logs;
-use RY\General\V20260727\Utils;
+use RY\General\V20260729\Logs;
+use RY\General\V20260729\Utils;
+use RY\Invoice\V20260729\AbstractLinkProvider;
 
-final class LinkProvider
+final class LinkProvider extends AbstractLinkProvider
 {
     private static ?self $_instance = null;
 
@@ -35,7 +36,7 @@ final class LinkProvider
 
     public function get_invoice($invoice_data, $object_ID)
     {
-        $general_info = $this->get_info();
+        $general_info = $this::get_info();
         $api_info = $this->get_api_info();
 
         $post_args = [
@@ -79,7 +80,6 @@ final class LinkProvider
                 $post_args['CarrierId2'] = $invoice_data['phone_barcode'];
                 break;
             case 'company':
-                $post_args['DetailVat'] = 0;
                 $post_args['BuyerIdentifier'] = $invoice_data['tax_no'];
                 $post_args['BuyerName'] = $invoice_data['tax_name'];
                 if (empty($post_args['BuyerName'])) {
@@ -102,19 +102,13 @@ final class LinkProvider
             $name = mb_strimwidth($this->clean_string($invoice_item['name']), 0, 80, '');
             $unit = mb_strimwidth($this->clean_string($invoice_item['unit']), 0, 6, '');
             $qty = round($invoice_item['qty'], $general_info['count_precision']);
-            $total = $invoice_item['total'];
-            if ($post_args['DetailVat'] === 0) {
-                $total = round($total / 1.05, 0);
-                $unit_price = round($total / $qty, $general_info['count_precision']);
-                $total = round($unit_price * $qty, $general_info['count_precision']);
-            } else {
-                $unit_price = round($total / $qty, $general_info['count_precision']);
-                $total = round($unit_price * $qty, $general_info['count_precision']);
-            }
+            $unit_price = round($invoice_item['total'] / $qty, $general_info['amount_precision']);
+            $total = round($unit_price * $qty, $general_info['amount_precision']);
 
             match($invoice_item['tax']) {
                 1 => $post_args['SalesAmount'] += $total,
             };
+
             $post_args['ProductItem'][] = [
                 'Description' => $name,
                 'Quantity' => $qty,
@@ -125,8 +119,12 @@ final class LinkProvider
             ];
         }
 
-        $post_args['SalesAmount'] = round($post_args['SalesAmount'], 0);
-        $amount = round($post_args['SalesAmount'] + $post_args['FreeTaxSalesAmount'] + $post_args['ZeroTaxSalesAmount'], 0);
+        if ($post_args['BuyerIdentifier'] !== '0000000000') {
+            $post_args['SalesAmount'] = round($post_args['SalesAmount'] / 1.05, 0);
+        } else {
+            $post_args['SalesAmount'] = round($post_args['SalesAmount'], 0);
+        }
+        $amount = $post_args['SalesAmount'] + $post_args['FreeTaxSalesAmount'] + $post_args['ZeroTaxSalesAmount'];
         $post_args['TaxAmount'] = $post_args['TotalAmount'] - $amount;
 
         $post_args['MainRemark'] = apply_filters('ry_invoice-main_remark', $post_args['MainRemark'], $object_ID);
@@ -135,8 +133,10 @@ final class LinkProvider
         foreach ($post_args as $key => $value) {
             if (is_array($value)) {
                 foreach ($value as $sub_key => $sub_value) {
-                    if (is_int($sub_value) || is_float($sub_value)) {
-                        $post_args[$key][$sub_key] = (string) $sub_value;
+                    foreach ($sub_value as $sub_sub_key => $sub_sub_value) {
+                        if (is_int($sub_sub_value) || is_float($sub_sub_value)) {
+                            $post_args[$key][$sub_key][$sub_sub_key] = (string) $sub_sub_value;
+                        }
                     }
                 }
             }
@@ -185,23 +185,6 @@ final class LinkProvider
         }
     }
 
-    public function get_info()
-    {
-        $general_info = Main::get_option('general', []);
-        if (!is_array($general_info)) {
-            $general_info = [];
-        }
-
-        $general_info = array_merge([
-            'count_precision' => 3,
-            'amount_precision' => 7,
-        ], $general_info);
-        $general_info['count_precision'] = (int) $general_info['count_precision'];
-        $general_info['amount_precision'] = (int) $general_info['amount_precision'];
-
-        return $general_info;
-    }
-
     public function get_api_info($load_test = true)
     {
         $api_info = Main::get_option('apiinfo', []);
@@ -225,17 +208,10 @@ final class LinkProvider
 
     protected function generate_trade_no($object_ID, $order_prefix = '')
     {
-        $trade_no = $order_prefix . $object_ID . 'T' . random_int(0, 9) . strrev((string) time());
+        $trade_no = parent::generate_trade_no($object_ID, $order_prefix);
         $trade_no = apply_filters('ry_invoice_amego-trade_no', $trade_no, $object_ID, $order_prefix);
 
         return substr($trade_no, 0, 18);
-    }
-
-    protected function clean_string(string $string)
-    {
-        $string = wp_strip_all_tags($string);
-        $string = trim(str_replace(["\r", "\n", "\t"], '', $string));
-        return str_replace(['|', '<', '>', '&', ':', '\'', '"', '`'], '', $string);
     }
 
     protected function link_server(string $url, array $args, string $invoice, string $AppKey, int $timeout = 30)
