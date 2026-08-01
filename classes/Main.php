@@ -4,8 +4,8 @@ namespace RY\Invoice\Amego;
 
 defined('ABSPATH') or exit;
 
-use RY\General\V20260729\AbstractBasic;
-use RY\General\V20260729\Logs;
+use RY\General\V20260801\AbstractBasic;
+use RY\General\V20260801\Utils;
 use RY\Invoice\Amego\Admin\Admin;
 use RY\Invoice\Amego\WooCommerce\Fields;
 use RY\Invoice\Amego\WooCommerce\Invoice;
@@ -32,13 +32,21 @@ final class Main extends AbstractBasic
     {
         load_plugin_textdomain('ry-invoice-for-amego', false, plugin_basename(dirname(__DIR__)) . '/languages');
 
-        Logs::set_log(self::get_option('log', 'no') === 'yes', 'amego-invoice');
-
         if (is_admin()) {
             Update::update();
         }
 
+        add_filter('ry-plugin/log_enabled', [$this, 'set_log_enabled'], 10, 2);
         add_action('init', [$this, 'do_wp_init'], 9);
+    }
+
+    public function set_log_enabled(bool $enabled, string $handle): bool
+    {
+        if ($handle === 'amego-invoice') {
+            return Utils::string_to_bool(self::get_option('log', ''));
+        }
+
+        return $enabled;
     }
 
     public function do_wp_init(): void
