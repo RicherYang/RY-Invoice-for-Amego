@@ -6,7 +6,7 @@ defined('ABSPATH') or exit;
 
 use RY\General\V20260801\Logs;
 use RY\General\V20260801\Utils;
-use RY\Invoice\V20260729\AbstractLinkProvider;
+use RY\Invoice\V20260805\AbstractLinkProvider;
 
 final class LinkProvider extends AbstractLinkProvider
 {
@@ -15,11 +15,13 @@ final class LinkProvider extends AbstractLinkProvider
     private array $api_test_url = [
         'get' => 'https://invoice-api.amego.tw/json/f0401',
         'invalid' => 'https://invoice-api.amego.tw/json/f0501',
+        'track' => 'https://invoice-api.amego.tw/json/track_all',
     ];
 
     private array $api_url = [
         'get' => 'https://invoice-api.amego.tw/json/f0401',
         'invalid' => 'https://invoice-api.amego.tw/json/f0501',
+        'track' => 'https://invoice-api.amego.tw/json/track_all',
     ];
 
     public static function instance(): LinkProvider
@@ -183,6 +185,26 @@ final class LinkProvider extends AbstractLinkProvider
             Logs::log('amego-invoice', 'info', 'Invalid response #' . $object_ID, $result);
             do_action('ry_invoice_amego-post_invalid_invoice', $post_args, $result, $object_ID);
         }
+    }
+
+    public function track_status($year, $term)
+    {
+        $api_info = $this->get_api_info();
+
+        $post_args = [
+            'Year' => $year,
+            'Period' => $term,
+        ];
+
+        if ($api_info['testmode']) {
+            $post_url = $this->api_test_url['track'];
+        } else {
+            $post_url = $this->api_url['track'];
+        }
+
+        $result = $this->link_server($post_url, $post_args, $api_info['invoice'], $api_info['AppKey']);
+        Logs::log('amego-invoice', 'info', 'Track LINK #' . $year . '-' . $term, $result);
+        return $result;
     }
 
     public function get_api_info($load_test = true)

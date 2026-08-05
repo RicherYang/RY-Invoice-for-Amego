@@ -4,6 +4,7 @@ namespace RY\Invoice\Amego\Admin;
 
 defined('ABSPATH') or exit;
 
+use RY\Invoice\Amego\Admin\ListTable\Track;
 use RY\Invoice\Amego\Main;
 use RY\Invoice\Amego\WooCommerce\Invoice;
 
@@ -26,6 +27,7 @@ final class Ajax
         add_action('wp_ajax_RY_IFAMEGO_get', [$this, 'get_invoice']);
         add_action('wp_ajax_RY_IFAMEGO_cancel', [$this, 'cancel_invoice']);
         add_action('wp_ajax_RY_IFAMEGO_invalid', [$this, 'invalid_invoice']);
+        add_action('wp_ajax_RY_IFAMEGO_track', [$this, 'track_status']);
     }
 
     public function get_invoice()
@@ -77,5 +79,18 @@ final class Ajax
         }
 
         wp_die();
+    }
+
+    public function track_status()
+    {
+        check_ajax_referer('track-status');
+
+        $list_table = new Track();
+        $list_table->prepare_items();
+        ob_start();
+        $list_table->display();
+        $html = ob_get_clean();
+
+        wp_send_json_success($html);
     }
 }
