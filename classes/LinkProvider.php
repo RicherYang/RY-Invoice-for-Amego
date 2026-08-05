@@ -238,7 +238,7 @@ final class LinkProvider extends AbstractLinkProvider
 
     protected function link_server(string $url, array $args, string $invoice, string $AppKey, int $timeout = 30)
     {
-        wc_set_time_limit(40);
+        @set_time_limit(40);
 
         $now = new \DateTime('now', new \DateTimeZone('Asia/Taipei'));
         $post_data = [
