@@ -62,6 +62,10 @@ final class Option extends AbstractAdminPage
             'AppKey' => sanitize_locale_name($_POST['AppKey'] ?? ''),
         ];
         Main::update_option('apiinfo', $api_info, false);
+
+        if (empty($api_info['invoice']) || empty($api_info['AppKey'])) {
+            $this->add_notice('info', __('Need API key information for connect to provider server.', 'ry-invoice-for-amego'));
+        }
         $this->add_notice('success', __('Settings saved.', 'ry-invoice-for-amego'));
     }
 }

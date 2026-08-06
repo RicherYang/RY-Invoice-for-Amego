@@ -7,7 +7,7 @@ use RY\Invoice\Amego\Main;
 
 ?>
 
-<?php $api_info = LinkProvider::instance()->get_api_info(false); ?>
+<?php $api_info = LinkProvider::instance()->get_api_info(); ?>
 
 <h2 class="title"><?php esc_html_e('API credentials', 'ry-invoice-for-amego'); ?></h2>
 
