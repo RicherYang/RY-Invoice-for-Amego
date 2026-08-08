@@ -23,7 +23,6 @@ final class ActionScheduler
     protected function do_init(): void
     {
         add_action('action_scheduler_pre_init', [$this, 'load']);
-        add_filter('action_scheduler_load_deprecated_functions', '__return_false');
     }
 
     public function load(): void
