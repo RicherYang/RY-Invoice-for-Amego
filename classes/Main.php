@@ -4,8 +4,8 @@ namespace RY\Invoice\Amego;
 
 defined('ABSPATH') or exit;
 
-use RY\General\V20260801\AbstractBasic;
-use RY\General\V20260801\Utils;
+use RY\General\V20260810\AbstractBasic;
+use RY\General\V20260810\Utils;
 use RY\Invoice\Amego\Admin\Admin;
 use RY\Invoice\Amego\WooCommerce\Fields;
 use RY\Invoice\Amego\WooCommerce\Invoice;

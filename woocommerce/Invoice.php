@@ -4,7 +4,7 @@ namespace RY\Invoice\Amego\WooCommerce;
 
 defined('ABSPATH') or exit;
 
-use RY\General\V20260801\Logs;
+use RY\General\V20260810\Logs;
 use RY\Invoice\Amego\LinkProvider;
 use RY\Invoice\Amego\Main;
 use RY\Invoice\Amego\WooCommerce\Admin\Admin;
