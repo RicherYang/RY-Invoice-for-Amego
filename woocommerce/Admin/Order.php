@@ -6,7 +6,7 @@ defined('ABSPATH') or exit;
 
 use RY\Invoice\Amego\Main;
 use RY\Invoice\Amego\WooCommerce\Invoice;
-use RY\Invoice\V20260827\WooCommerce\AbstractAdminOrder;
+use RY\Invoice\V20260906\WooCommerce\AbstractAdminOrder;
 
 final class Order extends AbstractAdminOrder
 {

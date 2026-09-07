@@ -6,7 +6,7 @@ defined('ABSPATH') or exit;
 
 use RY\Invoice\Amego\LinkProvider;
 use RY\Invoice\Amego\Utils;
-use RY\Invoice\V20260827\ListTable\Track as BaseTrack;
+use RY\Invoice\V20260906\ListTable\Track as BaseTrack;
 
 final class Track extends BaseTrack
 {

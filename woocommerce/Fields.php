@@ -5,7 +5,7 @@ namespace RY\Invoice\Amego\WooCommerce;
 defined('ABSPATH') or exit;
 
 use RY\Invoice\Amego\Main;
-use RY\Invoice\V20260827\WooCommerce\AbstractFields;
+use RY\Invoice\V20260906\WooCommerce\AbstractFields;
 
 final class Fields extends AbstractFields
 {
