@@ -45,8 +45,8 @@ msgstr "光貿電子發票，支援 WooCommerce。"
 msgid "Richer Yang"
 msgstr "Richer Yang"
 
-#: admin/Admin.php:103
-#: admin/Admin.php:124
+#: admin/Admin.php:104
+#: admin/Admin.php:126
 msgid "E-Invoice"
 msgstr "電子發票"
 
