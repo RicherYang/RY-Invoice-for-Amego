@@ -244,8 +244,9 @@ final class LinkProvider extends AbstractLinkProvider
         $post_data['sign'] = hash('md5', $post_data['data'] . $post_data['time'] . $AppKey);
         $response = wp_remote_post($url, [
             'timeout' => $timeout,
+            'httpversion' => '1.1',
+            'user-agent' => apply_filters('http_headers_useragent', 'RY/' . date('Y.m')),
             'body' => $post_data,
-            'user-agent' => apply_filters('http_headers_useragent', 'WordPress/' . get_bloginfo('version')),
         ]);
 
         if (is_wp_error($response)) {
