@@ -36,12 +36,20 @@ final class Track extends BaseTrack
         }
     }
 
-    protected function column_term($item)
+    /**
+     * @param  array  $item
+     * @return string
+     */
+    protected function column_term($item): string
     {
         return Utils::track_term_to_name($item['term']);
     }
 
-    protected function column_status($item)
+    /**
+     * @param  array  $item
+     * @return string
+     */
+    protected function column_status($item): string
     {
         $info = '';
         if ($item['status'] == '1') {
